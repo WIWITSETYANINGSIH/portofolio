@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luminé</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink-1:#fff1f5;          /* latar lembut */
+      --pink-2:#ffd0e1;          /* gradien */
+      --pink-3:#ff8fb3;          /* aksen */
+      --pink-4:#ff5f9a;          /* CTA */
+      --gold-1:#f6e27a;          /* emas terang */
+      --gold-2:#c9a227;          /* emas tua */
+      --ink:#2b2233;             /* teks utama */
+      --muted:#6d5e71;           /* teks sekunder */
+      --card:#ffffff;            /* kartu */
+      --ring:rgba(255,95,154,.35);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:"Poppins",system-ui,Arial,sans-serif;background:linear-gradient(180deg,var(--pink-1),var(--pink-2));color:var(--ink)}
+
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    .shell{min-height:92vh;display:grid;place-items:center}
+
+    .card{
+      width:100%;max-width:980px;background:var(--card);border-radius:28px;padding:28px;box-shadow:0 20px 60px rgba(255,95,154,.25);
+      position:relative;overflow:hidden;border:1px solid #ffe3ee
+    }
+
+    .gold-ribbon{position:absolute;inset:auto -20% -32px -20%;height:100px;background:linear-gradient(90deg,var(--gold-2),var(--gold-1),var(--gold-2));filter:blur(12px);opacity:.25}
+
+    .header{display:flex;gap:18px;align-items:center;margin-bottom:12px}
+    .logo{width:52px;height:52px;border-radius:14px;background:radial-gradient(circle at 30% 30%, var(--gold-1), var(--gold-2));box-shadow:0 6px 18px rgba(201,162,39,.35)}
+    .brand{font-weight:800;font-size:22px;letter-spacing:.4px}
+    .subtitle{color:var(--muted);font-size:13px}
+
+    .grid{display:grid;grid-template-columns:1.2fr 1fr;gap:26px}
+    .left,.right{background:#fff;border-radius:20px;padding:22px;border:1px solid #ffe4ef}
+
+    h1,h2{margin:0 0 12px 0}
+    h1{font-family:"Playfair Display",serif;font-size:38px}
+    h2{font-size:18px;color:#9c446a;text-transform:uppercase;letter-spacing:.12em}
+
+    label{font-weight:600;font-size:14px}
+    input,textarea{width:100%;padding:12px 14px;border:1.4px solid #ffd3e6;border-radius:14px;outline:none;background:#fff}
+    input:focus,textarea:focus{box-shadow:0 0 0 4px var(--ring);border-color:var(--pink-3)}
+    textarea{min-height:120px;resize:vertical}
+
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:16px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(180deg,var(--pink-4),var(--pink-3));color:#fff;box-shadow:0 10px 24px rgba(255,95,154,.35)}
+    .btn-ghost{background:#fff;color:var(--pink-4);border:1.5px solid var(--pink-3)}
+    .btn-gold{background:linear-gradient(180deg,var(--gold-1),var(--gold-2));color:#4a3b08;box-shadow:0 10px 20px rgba(201,162,39,.35)}
+
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+
+    .center{text-align:center}
+
+    .avatar{width:140px;height:140px;border-radius:999px;border:4px solid #fff;box-shadow:0 6px 24px rgba(0,0,0,.12);object-fit:cover;background:#ffe3ee}
+
+    .login-box{max-width:520px;margin:0 auto;text-align:center}
+    .login-title{font-family:"Playfair Display",serif;font-size:44px;margin-bottom:4px}
+    .login-sub{color:var(--muted);margin-bottom:20px}
+
+    .login-form{display:grid;gap:12px;margin-top:10px}
+
+    .note{font-size:12px;color:var(--muted)}
+
+    /* PORTFOLIO VIEW */
+    .pf-hero{display:flex;gap:24px;align-items:center}
+    .pf-hero .pf-meta{display:flex;flex-direction:column;gap:6px}
+    .pf-name{font-family:"Playfair Display",serif;font-size:36px}
+    .pf-handle{color:#b14a76}
+
+    .pill{display:inline-block;padding:8px 12px;border-radius:999px;background:#fff0f6;border:1px solid #ffc0dc;margin:4px 6px 0 0;font-size:13px}
+
+    .section{margin-top:16px}
+    .section h3{font-size:16px;margin:0 0 6px 0;color:#a43d6c;text-transform:uppercase;letter-spacing:.14em}
+    .card-thin{border:1px solid #ffe4ef;border-radius:18px;padding:14px;background:#fff}
+
+    /* responsive */
+    @media (max-width:920px){
+      .grid{grid-template-columns:1fr}
+      .pf-hero{flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <!-- ================= LOGIN ================= -->
+    <section id="screen-login" class="container" role="region" aria-label="Masuk">
+      <div class="card login-box">
+        <div class="gold-ribbon" aria-hidden="true"></div>
+        <div class="header" style="justify-content:center">
+          <div class="logo"></div>
+          <div>
+            <div class="brand">PeonyFolio</div>
+            <div class="subtitle">Masuk terlebih dahulu untuk membuat portofolio cantikmu ✨</div>
+          </div>
+        </div>
+        <div>
+          <div class="login-title">Welcome Back</div>
+          <div class="login-sub">Gunakan email apa saja. Ini demo tanpa backend.</div>
+          <form id="form-login" class="login-form">
+            <div>
+              <label for="login-email">Email</label>
+              <input id="login-email" type="email" placeholder="nama@mail.com" required>
+            </div>
+            <div>
+              <label for="login-pass">Kata Sandi</label>
+              <input id="login-pass" type="password" placeholder="min 4 karakter" minlength="4" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Masuk</button>
+            <div class="note">Data hanya disimpan di browser kamu (localStorage).</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FORM INPUT ================= -->
+    <section id="screen-form" class="container" hidden>
+      <div class="card">
+        <div class="gold-ribbon" aria-hidden="true"></div>
+        <div class="header">
+          <div class="logo"></div>
+          <div>
+            <div class="brand">PeonyFolio — Setup</div>
+            <div class="subtitle">Lengkapi biodata di bawah ini. Kamu bisa ubah kapan saja.</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="left">
+            <h1>Profil</h1>
+
+            <div class="row">
+              <div>
+                <label>Nama Lengkap</label>
+                <input id="f-fullname" required placeholder="Wiwit Setya Ningsih">
+              </div>
+              <div>
+                <label>Nama Panggilan</label>
+                <input id="f-nickname" placeholder="Wiwit">
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label>Email</label>
+                <input id="f-email" type="email" placeholder="nama@mail.com">
+              </div>
+              <div>
+                <label>No HP</label>
+                <input id="f-phone" type="tel" placeholder="08xxxxxxxxxx">
+              </div>
+            </div>
+
+            <div>
+              <label>Bio</label>
+              <textarea id="f-bio" placeholder="Cerita singkat tentang dirimu..."></textarea>
+            </div>
+
+            <div class="row">
+              <div>
+                <label>Hobi (pisahkan dengan koma)</label>
+                <input id="f-hobbies" placeholder="Membaca, Menulis, Desain">
+              </div>
+              <div>
+                <label>Keterampilan (pisahkan dengan koma)</label>
+                <input id="f-skills" placeholder="HTML, CSS, JavaScript">
+              </div>
+            </div>
+
+            <div class="actions" style="margin-top:12px">
+              <button class="btn btn-primary" id="btn-save">Simpan & Lihat Portfolio</button>
+              <button class="btn btn-ghost" id="btn-clear" type="button">Bersihkan Data</button>
+            </div>
+          </div>
+
+          <div class="right center">
+            <h2>Foto Profil</h2>
+            <img id="avatar-preview" class="avatar" alt="Avatar" src=""/>
+            <div style="margin-top:12px">
+              <input id="f-avatar" type="file" accept="image/*">
+            </div>
+            <div class="note" style="margin-top:8px">Pilih gambar, akan disimpan sebagai Data URL di browser.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PORTFOLIO VIEW ================= -->
+    <section id="screen-view" class="container" hidden>
+      <div class="card">
+        <div class="gold-ribbon" aria-hidden="true"></div>
+        <div class="header">
+          <div class="logo"></div>
+          <div>
+            <div class="brand">PeonyFolio</div>
+            <div class="subtitle">Lumine✨</div>
+          </div>
+        </div>
+
+        <div class="card-thin" style="margin-bottom:16px">
+          <div class="pf-hero">
+            <img id="v-avatar" class="avatar" alt="Avatar">
+            <div class="pf-meta">
+              <div class="pf-name" id="v-fullname">Nama Lengkap</div>
+              <div class="pf-handle" id="v-nickname">@panggilan</div>
+              <div class="note" id="v-email"></div>
+              <div class="note" id="v-phone"></div>
+              <div style="margin-top:10px" class="actions">
+                <button class="btn btn-gold" id="btn-edit">Edit Profil</button>
+                <button class="btn btn-ghost" id="btn-logout">Keluar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="left">
+            <div class="section">
+              <h3>Tentang Saya</h3>
+              <div id="v-bio"></div>
+            </div>
+            <div class="section">
+              <h3>Hobi</h3>
+              <div id="v-hobbies"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="section">
+              <h3>Keterampilan</h3>
+              <div id="v-skills"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const KEY = "peonyfolio.profile";
+
+    const $ = (sel) => document.querySelector(sel);
+    const show = (id) => {
+      ["#screen-login","#screen-form","#screen-view"].forEach(s=>$(s).hidden=true);
+      $(id).hidden = false;
+      window.scrollTo({top:0,behavior:"smooth"});
+    };
+
+    const loadProfile = () => {
+      try{ return JSON.parse(localStorage.getItem(KEY) || "{}"); }catch(e){ return {}; }
+    };
+    const saveProfile = (data) => localStorage.setItem(KEY, JSON.stringify(data));
+    const clearProfile = () => localStorage.removeItem(KEY);
+
+    // ===== INITIAL ROUTING =====
+    window.addEventListener("DOMContentLoaded", () => {
+      const profile = loadProfile();
+      if(profile && profile.fullname){
+        show("#screen-view");
+        renderView(profile);
+      }else{
+        show("#screen-login");
+      }
+    });
+
+    // ===== LOGIN =====
+    $("#form-login").addEventListener("submit", (e) => {
+      e.preventDefault();
+      // Demo: login apa saja asalkan valid
+      const email = $("#login-email").value.trim();
+      const pass = $("#login-pass").value.trim();
+      if(email && pass.length >= 4){
+        const p = loadProfile();
+        p.email = p.email || email; // isi default jika belum ada
+        saveProfile(p);
+        preloadForm(p);
+        show("#screen-form");
+      }
+    });
+
+    // ===== FORM PRELOAD =====
+    function preloadForm(p){
+      $("#f-fullname").value = p.fullname || "";
+      $("#f-nickname").value = p.nickname || "";
+      $("#f-email").value    = p.email    || "";
+      $("#f-phone").value    = p.phone    || "";
+      $("#f-bio").value      = p.bio      || "";
+      $("#f-hobbies").value  = (p.hobbies||[]).join(", ");
+      $("#f-skills").value   = (p.skills ||[]).join(", ");
+      $("#avatar-preview").src = p.avatar || "";
+    }
+
+    // avatar upload -> Data URL
+    $("#f-avatar").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => { $("#avatar-preview").src = ev.target.result; };
+      reader.readAsDataURL(file);
+    });
+
+    // ===== SAVE =====
+    $("#btn-save").addEventListener("click", () => {
+      const data = {
+        fullname: $("#f-fullname").value.trim(),
+        nickname: $("#f-nickname").value.trim(),
+        email:    $("#f-email").value.trim(),
+        phone:    $("#f-phone").value.trim(),
+        bio:      $("#f-bio").value.trim(),
+        hobbies:  $("#f-hobbies").value.split(",").map(s=>s.trim()).filter(Boolean),
+        skills:   $("#f-skills").value.split(",").map(s=>s.trim()).filter(Boolean),
+        avatar:   $("#avatar-preview").src || ""
+      };
+      if(!data.fullname){ alert("Nama lengkap wajib diisi"); return; }
+      saveProfile(data);
+      renderView(data);
+      show("#screen-view");
+    });
+
+    // ===== CLEAR =====
+    $("#btn-clear").addEventListener("click", () => {
+      if(confirm("Hapus semua data yang diisi?")){
+        clearProfile();
+        preloadForm({});
+        $("#f-avatar").value = "";
+      }
+    });
+
+    // ===== VIEW RENDER =====
+    function renderView(p){
+      $("#v-fullname").textContent = p.fullname || "Anonim";
+      $("#v-nickname").textContent = p.nickname ? `@${p.nickname}` : "";
+      $("#v-email").textContent = p.email || "";
+      $("#v-phone").textContent = p.phone || "";
+      $("#v-bio").textContent   = p.bio   || "Belum ada bio.";
+
+      // pills
+      const wrap = (arr) => (arr||[]).map(x=>`<span class="pill">${escapeHtml(x)}</span>`).join("");
+      $("#v-hobbies").innerHTML = wrap(p.hobbies);
+      $("#v-skills").innerHTML  = wrap(p.skills);
+      $("#v-avatar").src        = p.avatar || "";
+    }
+
+    // ===== EDIT & LOGOUT =====
+    $("#btn-edit").addEventListener("click", () => { preloadForm(loadProfile()); show("#screen-form"); });
+    $("#btn-logout").addEventListener("click", () => { show("#screen-login"); });
+
+    // util
+    function escapeHtml(str){
+      return (str||"").replace(/[&<>"]+/g, (m) => ({"&":"&amp;","<":"&lt;",
+        ">":"&gt;","\"":"&quot;"}[m]));
+    }
+  </script>
+</body>
+</html>
